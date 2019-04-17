@@ -2,6 +2,14 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-	# 127.0.0.1:8000 will take you to this.  
+	# Local url 
+	# 127.0.0.1:8000 
+	# Online url
+	# mydjangosite.com
 	path('', views.post_list, name='post_list'),
+	# Local url 
+	# 127.0.0.1:8000/post/2
+	# Online url
+	# mydjangosite.com/post/2
+	path('post/<int:pk>/', views.post_detail, name='post_detail'),
 ]
