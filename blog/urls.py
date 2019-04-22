@@ -12,4 +12,10 @@ urlpatterns = [
 	# Online url
 	# mydjangosite.com/post/2
 	path('post/<int:pk>/', views.post_detail, name='post_detail'),
+	# Local url 
+	# 127.0.0.1:8000/post/new
+	# Online url
+	# mydjangosite.com/post/new
+	path('post/new/', views.post_new, name='post_new'),
+
 ]
