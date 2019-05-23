@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 	# Local url 
@@ -32,5 +33,10 @@ urlpatterns = [
 	# Online url
 	# mydjangosite.com/post/2/publish
 	path('post/<int:pk>/publish/', views.post_publish, name='post_publish'),
-
+	# Local url 
+	# 127.0.0.1:8000/accounts/login
+	# Online url
+	# mydjangosite.com/accounts/login
+	# path('accounts/login/', auth_views.LoginView, name='login'),
+	path('accounts/', include('django.contrib.auth.urls')),
 ]
