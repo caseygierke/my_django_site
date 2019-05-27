@@ -37,7 +37,7 @@ def post_new(request):
 		stuff_for_frontend = {'form': form}
 	return render(request, 'blog/post_edit.html', stuff_for_frontend)
 
-
+@login_required
 def post_edit(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	if request.method == 'POST':
@@ -54,14 +54,16 @@ def post_edit(request, pk):
 		# If I am just showing up and it is using the GET method
 		# then just show me the existing post 
 		form = PostForm(instance=post)
-		stuff_for_frontend = {'form': form}
+		stuff_for_frontend = {'form': form, 'post': post}
 	return render(request, 'blog/post_edit.html', stuff_for_frontend)
 
+@login_required
 def post_draft_list(request):
 	posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
 	stuff_for_frontend = {'posts': posts}
 	return render(request, 'blog/post_draft_list.html', stuff_for_frontend)
 
+@login_required
 def post_publish(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	post.publish()
