@@ -84,10 +84,12 @@ def add_comment_to_post(request, pk):
 		form = CommentForm()
 	return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
+@login_required
 def comment_remove(request, pk):
 	comment = get_object_or_404(Comment, pk=pk)
 	comment.delete()
 
+@login_required
 def comment_approve(request, pk):
 	# mydjangosite.com/comment/2/approve --> comment 2 will get approved
 	comment = get_object_or_404(Comment, pk=pk)
