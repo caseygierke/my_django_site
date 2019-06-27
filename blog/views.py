@@ -67,8 +67,15 @@ def post_draft_list(request):
 def post_publish(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	post.publish()
-	return redirect('post_detail', pk=pk)
+	return redirect('/', pk=post.pk)
 
+@login_required
+def post_delete(request,pk):
+	post = get_object_or_404(Post, pk=pk)
+	post.delete()
+	return redirect('post_list')
+
+# Comments
 @login_required
 def add_comment_to_post(request, pk):
 	post = get_object_or_404(Post, pk=pk)
@@ -98,3 +105,4 @@ def comment_approve(request, pk):
 	
 
 	return redirect('post_detail', pk=comment.post.pk)
+
