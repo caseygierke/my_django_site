@@ -1,5 +1,5 @@
 certifi==2019.3.9
-Django==2.1.7
+Django==2.1.11
 django-crispy-forms==1.7.2
 Markdown==3.1.1
 mistune==0.8.4
